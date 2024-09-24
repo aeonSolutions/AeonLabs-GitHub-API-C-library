@@ -25,6 +25,7 @@ Goto <a href="https://github.com/aeonSolutions/Open-Scientific-Research">Open Sc
 </p>
 
 **I start working again on this project beginning next year 2025**. In the meantime looking for sponsors to pay for the required work necessary for the successful completion of this project.  <br>
+
 I have also available here, on Github, a C++ library for the [Dataverse API](https://github.com/aeonSolutions/OpenScience-Dataverse-API-C-library) (data repositories). To view click [here](https://github.com/aeonSolutions/OpenScience-Dataverse-API-C-library). <br>
 
 
@@ -70,6 +71,9 @@ There's an ongoing research project to develop a "[Proof of Concept of a Smart D
 
 ## For more general information
 Ask a question or start a discussion: A great place to publicly share feedback, ideas, feature requests, and troubleshoot any issues is in the [GitHub Users Community](https://github.com/orgs/community/discussions).
+
+## For Developers
+The GitHub REST API documentation can be found here: https://docs.github.com/en/rest 
 
 <br>
 
