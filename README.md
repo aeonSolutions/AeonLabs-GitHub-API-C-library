@@ -10,7 +10,7 @@
 **Navigation** | [AeonLabs Main Index](https://github.com/aeonSolutions/aeonSolutions/blob/main/aeonSolutions-Main-Index.md)   >>  [Main Page - Open Source Code Software](https://github.com/aeonSolutions/aeonlabs-open-software-catalogue)  >>  Dataverse API C library
 
 <div align="right">
-Goto <a href="https://github.com/aeonSolutions/Open-Scientific-Research">Open Science Research</a> &nbsp; Last update 26-08-2024 <br>
+Goto <a href="https://github.com/aeonSolutions/Open-Scientific-Research">Open Science Research</a> &nbsp; Last update 24-09-2024 <br>
   <a href="https://github-com.translate.goog/aeonSolutions/OpenScience-Dataverse-API-C-library/tree/main?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=en&_x_tr_pto=wapp">Change Language</a> <br>
 </div>
 
