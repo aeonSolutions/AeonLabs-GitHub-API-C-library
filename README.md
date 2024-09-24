@@ -11,7 +11,7 @@
 
 <div align="right">
 Goto <a href="https://github.com/aeonSolutions/Open-Scientific-Research">Open Science Research</a> &nbsp; Last update 24-09-2024 <br>
-  <a href="https://github-com.translate.goog/aeonSolutions/OpenScience-Dataverse-API-C-library/tree/main?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=en&_x_tr_pto=wapp">Change Language</a> <br>
+  <a href="https://github-com.translate.goog/aeonSolutions/AeonLabs-GitHub-API-C-library?_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp">Change Language</a> <br>
 </div>
 
 # [![CodeFactor](https://www.codefactor.io/repository/github/aeonsolutions/openscience-dataverse-api-c-library/badge)](https://www.codefactor.io/repository/github/aeonsolutions/openscience-dataverse-api-c-library) GitHub API C++ library
