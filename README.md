@@ -104,23 +104,11 @@ See more detailed information about [Data Citation Standard](https://dataverse.o
 
 <br>
 
-Wiki? | Endpoint | URL | Implemented?| Notes 
-------|----------|-----|--------------|-------
-| |Dataverses | POST 'api/dataverses/$id' | Y| - 
-| ✓  | -         | GET `api/dataverses/$id` | Y | -
-| ✓   | -         | GET `api/dataverses/$id/contents` | Y | -
-| -   | -         | DELETE `api/dataverses/$id` | N | -
-| -   | -         | POST `api/dataverses/$id/datasets` | N | -
-| -   | -         | POST `api/dataverses/$identifier/actions/:publish` | N | -
-| |Datasets | GET `api/datasets/$id/versions` | Y| - 
-| ✓   | -         | GET `/api/datasets/$id/locks` | Y | -
-| -   | -         | DELETE `api/datasets/$id` | N | -
-| -   | -         | POST `api/dataverses/$id` | N | -
-| ✓   | -         | GET `PUT api/datasets/$id/versions/:draft?` | Y | -
-| -   | -         | POST `PUT api/datasets/$id/actions/:publish?type=$type` | N | -
-| |MetadataBlocks | GET `api/metadatablocks` | Y| -
-| ✓   | -         | GET ` api/metadatablocks/$identifier` | Y| -
-| | Upload file | POST `/api/datasets/:persistentId/add?persistentId=` | Y | Add a file to a dataset
+Wiki? |   Endpoint   | Description               | Implemented?| Notes 
+------|--------------|---------------------------|--------------|-------
+|  ✓  |  PUSH Files  |                           |              | - 
+|     | -            |  GET SHA Blob of a File   |     Y         | -
+|     | -            |  PUSH File in chunks      |     Y         | -
 
 
 <br />
