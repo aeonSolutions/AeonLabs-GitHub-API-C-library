@@ -44,8 +44,10 @@ There's a test code .ino file available for Arduino-compatible microcontrollers,
 https://github.com/aeonSolutions/Aeonlabs-Arduino_Hardware_Test_Code/tree/main/github_api_test_upload
 
 **GitHub API in another coding language**
-
-- -
+- [Java API for GitHub](https://github.com/hub4j/github-api)
+- [Go API for GitHub](https://github.com/google/go-github)
+- [Python API for GitHub](https://github.com/PyGithub/PyGithub)
+- 
 
 <br>
 
