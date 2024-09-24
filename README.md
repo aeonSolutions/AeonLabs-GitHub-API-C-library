@@ -45,6 +45,7 @@ https://github.com/aeonSolutions/Aeonlabs-Arduino_Hardware_Test_Code/tree/main/g
 - [Java API for GitHub](https://github.com/hub4j/github-api)
 - [Go API for GitHub](https://github.com/google/go-github)
 - [Python API for GitHub](https://github.com/PyGithub/PyGithub)
+- [C++ API for GitHub](https://github.com/Kicer86/cpp_restapi)
 
 <br>
 
