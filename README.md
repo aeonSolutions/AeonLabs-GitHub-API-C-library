@@ -42,17 +42,15 @@ The Official Dataverse chat: [![Dataverse Chat on Matrix](https://img.shields.io
 There's a test code .ino file available for Arduino-compatible microcontrollers, such as EspressIF's ESP32, to test connectivity with a dataverse API. Link to the code: <br>
 https://github.com/aeonSolutions/Aeonlabs-Arduino_Hardware_Test_Code/tree/main/github_api_test_upload
 
-**Dataverse API in another coding language**
+**GitHub API in another coding language**
 
-Goto dataverse.org for another coding language that best suits your coding style and needs. Currently, there are client libraries for Python, Javascript, R, Java, and Julia that can be used to develop against Dataverse Software APIs
-
-https://guides.dataverse.org/en/5.12/api/client-libraries.html
+- -
 
 <br>
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/aeonSolutions/Aeonlabs-Arduino_Hardware_Test_Code/tree/main/github_api_test_upload. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/aeonSolutions/OpenScience-Dataverse-API-C-library/blob/main/CODE_OF_CONDUCT.md). Don't forget to read [AeonLabs's Wiki](https://github.com/aeonSolutions/PCB-Prototyping-Catalogue/wiki) before using any code or electronics available here on Github. Thank you.
+Bug reports and pull requests are welcome on GitHub at https://github.com/aeonSolutions/Aeonlabs-Arduino_Hardware_Test_Code/tree/main/github_api_test_upload. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/aeonSolutions/AeonLabs-GitHub-API-C-library/blob/main/CODE_OF_CONDUCT.md). Don't forget to read [AeonLabs's Wiki](https://github.com/aeonSolutions/PCB-Prototyping-Catalogue/wiki) before using any code or electronics available here on Github. Thank you.
 
 <br>
 
