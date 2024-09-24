@@ -24,7 +24,7 @@ Goto <a href="https://github.com/aeonSolutions/Open-Scientific-Research">Open Sc
    </a>
 </p>
 
-**I start working again on this project later this year in 2024**. In the meantime looking for sponsors to pay for the required work necessary for the successful completion of this project.  <br>
+**I start working again on this project beginning next year 2025**. In the meantime looking for sponsors to pay for the required work necessary for the successful completion of this project.  <br>
 I have also available here, on Github, a C++ library for the [Dataverse] API (data repositories). To view click [here](https://github.com/aeonSolutions/OpenScience-Dataverse-API-C-library). <br>
 
 
@@ -34,7 +34,7 @@ This is a C++-based library intended for embedded firmware development, however,
 
 The Dataverse Project is an open-source web application to share, preserve, cite, explore, and analyze research data. It facilitates making data available to others and allows you to replicate others' work more easily. Researchers, journals, data authors, publishers, data distributors, and affiliated institutions all receive academic credit and web visibility. Funded by Harvard University and Powered by Open Scholar.
 
-The Official Dataverse chat: [![Dataverse Chat on Matrix](https://img.shields.io/badge/join-matrix-blue.svg?style=for-the-badge)](https://view.matrix.org/alias/%23dataverse:matrix.org)
+The Official GitHub chat: https://github.com/orgs/community/discussions
 <br>
 <br>
 
@@ -74,14 +74,8 @@ Follow Dataverse.org on Twitter: [@dataverseorg](https://twitter.com/dataverseor
 
 <br>
 
-## For developers and Dataverse Repositories
-Report issues and contribute to dataverse.org's code: Report bugs and add feature requests in [GitHub Issues](https://github.com/IQSS/dataverse/issues) or use [GitHub pull requests](http://guides.dataverse.org/en/latest/developers/version-control.html#how-to-make-a-pull-request), if you have some code, scripts or documentation that you'd like to share. If you have a security issue to report, please email [security@dataverse.org](mailto:security@dataverse.org).
-
-Ask a question or start a discussion: A great place to publicly share feedback, ideas, feature requests, and troubleshoot any issues is in the [Dataverse Users Community](https://groups.google.com/forum/#!forum/dataverse-community).
-
-Join #dataverse on [chat.dataverse.org](http://chat.dataverse.org/) to chat with the Dataverse community in real time, or leave a message that will be logged at https://view.matrix.org/alias/%23dataverse:matrix.org
-
-[![Dataverse Chat on Matrix](https://img.shields.io/badge/join-matrix-blue.svg?style=for-the-badge)](https://view.matrix.org/alias/%23dataverse:matrix.org)
+## For developers and GitHub Repositories
+Ask a question or start a discussion: A great place to publicly share feedback, ideas, feature requests, and troubleshoot any issues is in the [GitHub Users Community](https://github.com/orgs/community/discussions).
 
 <br>
 
