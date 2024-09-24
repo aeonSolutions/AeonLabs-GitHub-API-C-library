@@ -20,7 +20,7 @@ Goto <a href="https://github.com/aeonSolutions/Open-Scientific-Research">Open Sc
 
 <p align="center">
    <a href="https://dataverse.org">
-     <img src="https://github.com/aeonSolutions/OpenScience-Dataverse-API-C-library/blob/main/dataverse_r_project.png"  height="100">
+     <img src="https://github.com/aeonSolutions/AeonLabs-GitHub-API-C-library/blob/main/media/github_c%2B%2B_library_logo.jpg"  height="100">
    </a>
 </p>
 
