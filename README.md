@@ -28,11 +28,11 @@ Goto <a href="https://github.com/aeonSolutions/Open-Scientific-Research">Open Sc
 I have also available here, on Github, a C++ library for the [Dataverse] API (data repositories). To view click [here](https://github.com/aeonSolutions/OpenScience-Dataverse-API-C-library). <br>
 
 
-This is a C++-based library intended for embedded firmware development, however, it can be easily ported and made compatible with any platform or operating system. see the [WIKI](https://github.com/aeonSolutions/OpenScience-Dataverse-API-C-library/wiki) for more information.
+This is a C++-based library intended for embedded firmware development, however, it can be easily ported and made compatible with any platform or operating system. see the [WIKI](h) for more information.
 
 <br>
 
-The Dataverse Project is an open-source web application to share, preserve, cite, explore, and analyze research data. It facilitates making data available to others and allows you to replicate others' work more easily. Researchers, journals, data authors, publishers, data distributors, and affiliated institutions all receive academic credit and web visibility. Funded by Harvard University and Powered by Open Scholar.
+GitHub is a web-based platform designed for version control and collaborative software development. It allows developers to manage and track changes to their code using Git, a version control system. With GitHub, multiple contributors can work on a project simultaneously, making it easy to collaborate, review, and integrate changes. It also provides features like issue tracking, pull requests, and code reviews, facilitating streamlined teamwork and ensuring code integrity over time. Additionally, GitHub hosts millions of open-source projects, allowing users to share and contribute to global software development.
 
 The Official GitHub chat: https://github.com/orgs/community/discussions
 <br>
