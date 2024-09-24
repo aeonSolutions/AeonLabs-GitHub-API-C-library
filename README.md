@@ -40,7 +40,7 @@ The Official Dataverse chat: [![Dataverse Chat on Matrix](https://img.shields.io
 
 **Test the API** <br>
 There's a test code .ino file available for Arduino-compatible microcontrollers, such as EspressIF's ESP32, to test connectivity with a dataverse API. Link to the code: <br>
-https://github.com/aeonSolutions/Aeonlabs-Arduino_Hardware_Test_Code/tree/main/dataverse_api_test_upload
+https://github.com/aeonSolutions/Aeonlabs-Arduino_Hardware_Test_Code/tree/main/github_api_test_upload
 
 **Dataverse API in another coding language**
 
@@ -52,7 +52,7 @@ https://guides.dataverse.org/en/5.12/api/client-libraries.html
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/aeonSolutions/OpenScience-Dataverse-API-C-library. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/aeonSolutions/OpenScience-Dataverse-API-C-library/blob/main/CODE_OF_CONDUCT.md). Don't forget to read [AeonLabs's Wiki](https://github.com/aeonSolutions/PCB-Prototyping-Catalogue/wiki) before using any code or electronics available here on Github. Thank you.
+Bug reports and pull requests are welcome on GitHub at https://github.com/aeonSolutions/Aeonlabs-Arduino_Hardware_Test_Code/tree/main/github_api_test_upload. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/aeonSolutions/OpenScience-Dataverse-API-C-library/blob/main/CODE_OF_CONDUCT.md). Don't forget to read [AeonLabs's Wiki](https://github.com/aeonSolutions/PCB-Prototyping-Catalogue/wiki) before using any code or electronics available here on Github. Thank you.
 
 <br>
 
@@ -79,7 +79,7 @@ Follow Dataverse.org on Twitter: [@dataverseorg](https://twitter.com/dataverseor
 ## For developers and Dataverse Repositories
 Report issues and contribute to dataverse.org's code: Report bugs and add feature requests in [GitHub Issues](https://github.com/IQSS/dataverse/issues) or use [GitHub pull requests](http://guides.dataverse.org/en/latest/developers/version-control.html#how-to-make-a-pull-request), if you have some code, scripts or documentation that you'd like to share. If you have a security issue to report, please email [security@dataverse.org](mailto:security@dataverse.org).
 
-Ask a question or start a discussion: Great place to publicly share feedback, ideas, feature requests, and troubleshoot any issues is in the [Dataverse Users Community](https://groups.google.com/forum/#!forum/dataverse-community).
+Ask a question or start a discussion: A great place to publicly share feedback, ideas, feature requests, and troubleshoot any issues is in the [Dataverse Users Community](https://groups.google.com/forum/#!forum/dataverse-community).
 
 Join #dataverse on [chat.dataverse.org](http://chat.dataverse.org/) to chat with the Dataverse community in real time, or leave a message that will be logged at https://view.matrix.org/alias/%23dataverse:matrix.org
 
