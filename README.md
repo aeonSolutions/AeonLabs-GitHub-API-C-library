@@ -1,11 +1,9 @@
 [![](https://dcbadge.vercel.app/api/server/hw3j3RwfJf) ](https://discord.gg/hw3j3RwfJf)
  [![Donate](https://img.shields.io/badge/donate-$-brown.svg?style=for-the-badge)](http://paypal.me/mtpsilva)
  [![Say Thanks](https://img.shields.io/badge/Say%20Thanks-!-yellow.svg?style=for-the-badge)](https://saythanks.io/to/mtpsilva)
-![](https://img.shields.io/github/last-commit/aeonSolutions/openScienceResearch-Smart-DAQ-Device-able-to-Upload-Live-Experimental-Sensor-Data-to-a-Data-Repo?style=for-the-badge) <a href="https://trackgit.com">
-<img src="https://us-central1-trackgit-analytics.cloudfunctions.net/token/ping/l98tfr0vje3q971a0cbl" alt="trackgit-views" />
-</a>
-
-![](https://views.whatilearened.today/views/github/aeonSolutions/OpenScience-Dataverse-API-C-library.svg)
+![](https://img.shields.io/github/last-commit/aeonSolutions/AeonLabs-GitHub-API-C-library?style=for-the-badge) 
+<img src="https://us-central1-trackgit-analytics.cloudfunctions.net/token/ping/m1go7dum4pjyglv0tb5m" alt="trackgit-views" />
+![](https://views.whatilearened.today/views/github/aeonSolutions/AeonLabs-GitHub-API-C-library.svg)
 
 **Navigation** | [AeonLabs Main Index](https://github.com/aeonSolutions/aeonSolutions/blob/main/aeonSolutions-Main-Index.md)   >>  [Main Page - Open Source Code Software](https://github.com/aeonSolutions/aeonlabs-open-software-catalogue)  >>  GitHub API C library
 
