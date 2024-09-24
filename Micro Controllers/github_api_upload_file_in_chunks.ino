@@ -24,15 +24,13 @@ You do not have to comply with the license for elements of the material in the p
 No warranties are given. The license may not give you all of the permissions necessary for your intended use. 
 For example, other rights such as publicity, privacy, or moral rights may limit how you use the material.
 
-
 Before proceeding to download any of AeonLabs software solutions for open-source development
  and/or PCB hardware electronics development make sure you are choosing the right license for your project. See 
 https://github.com/aeonSolutions/PCB-Prototyping-Catalogue/wiki/AeonLabs-Solutions-for-Open-Hardware-&-Source-Development
  for Open Hardware & Source Development for more information.
-
 */
 
-#define ENABLE_DEBUG
+#define ENABLE_DEBUG  // comment this line to disable Serial debugging
 
 #ifdef ENABLE_DEBUG
   #define log_I(x)  mySerial.println(x)
@@ -40,6 +38,7 @@ https://github.com/aeonSolutions/PCB-Prototyping-Catalogue/wiki/AeonLabs-Solutio
   #define log_I(x)
 #endif
 
+// for compatibiliy across ESP32 MCUs 
 #include <HardwareSerial.h>
 #if defined(CONFIG_IDF_TARGET_ESP32) 
     #define mySerial Serial2
@@ -51,7 +50,7 @@ https://github.com/aeonSolutions/PCB-Prototyping-Catalogue/wiki/AeonLabs-Solutio
    #define mySerial Serial1
 #endif
 
-
+// ADC using the ADS1115 
 #include <Adafruit_ADS1X15.h>
 Adafruit_ADS1115 ads;  /* Use this for the 16-bit version */
 // Pin connected to the ALERT/RDY signal for new sample notification.
@@ -64,12 +63,17 @@ bool ads115_offline = false;
 TwoWire I2C_BUS(0);
 #define  LED_GREEN 18
 
+// SPIF Fs File System 
 #include <FS.h>            // Include the SPIFFS or LittleFS library
 #include "SPIFFS.h"   // Use this for ESP32
+// File details
+String filePath = "/dataset.csv";    
+
+// Base64 encoding
 #include "mbedtls/base64.h"
 
+// Local Time managemnent and NTP 
 #include "esp_sntp.h"
-
 #include "time.h"
 #include "ESP32Time.h"
 ESP32Time rtc(0);
@@ -82,130 +86,30 @@ const char* ntpServer_3 = "1.pool.ntp.org";
 const long timezone = 0;  // (utc+) TZ in hours 
 const byte daysavetime = 1;
 
+// WiFi Connectivity 
 #include <WiFi.h>          // For ESP32 (or use <ESP8266WiFi.h> for ESP8266)
 #include <NetworkClient.h>
 #include <WiFiClientSecure.h>    // Secure client for HTTPS
 #include <HTTPClient.h>
-#include <SD.h>            // SD card library (optional, if reading from SD card)
-#include <SPI.h>
-#include <Base64.h>        // Base64 library (optional, for encoding chunks if necessary)
+// Replace with your credentials  ---------------------------------
+const char* ssid = "    ";
+const char* password = "   ";
 
-// Replace with your credentials
-const char* ssid = "  ";
-const char* password = "  ";
-
+// ------------------------------------------------------------------
 // GitHub credentials
-const char* githubToken = "  "; // Replace with your GitHub token
+const char* githubToken = "   "; // Replace with your GitHub token
 const char* githubUser = "aeonSolutions";              // Replace with your GitHub username
 const char* githubRepo = "AeonLabs-Safety-Health";                  // Replace with your GitHub repository
 const char* githubBranch = "main";  
-// File details
-String filePath = "/dataset.csv";                           // The path to the file on the filesystem (SPIFFS/LittleFS)
+                       // The path to the file on the filesystem (SPIFFS/LittleFS)
 const char* githubFilePath = "Measurements/datasets/dataset.csv";                      // Path in the GitHub repository
 
-File fileToSend;
 // Port and headers
 const char* githubHost = "api.github.com";
 const int httpsPort = 443;  // HTTPS port
 
-String latestCommitSHA;
-String latestTreeSHA;
-
-// *******************************************************************
-void BlinkLED(int LED, int duration) {
-  digitalWrite(LED, HIGH);   // sets the digital pin 13 on
-  delay(duration * 1000);    // waits for a second
-  digitalWrite(LED, LOW);   // sets the digital pin 13 off 
-}
-
-//*******************************************************************
-void get_time(){
-  tm timeinfo;
-  log_I("Connecting to the Time Server....");
-  // Init and get the time
-  sntp_set_sync_mode(SNTP_SYNC_MODE_SMOOTH);
-  configTime( 3600*timezone, daysavetime*3600, ntpServer_1, ntpServer_2, ntpServer_3 );
-  timeval tv;
-  sntp_sync_time(&tv);
-  log_I("Waiting for Time Sync");
-  
-  if (getLocalTime(&timeinfo) )
-    rtc.setTimeStruct(timeinfo);
-  
-  get_sntp_sync_status();
-  get_sntp_sync_mode();
-
-  NTP_update_interval = sntp_get_sync_interval(); // in milisec 
-  log_I("NTP Sync Interval = " + String(NTP_update_interval) );
-
-  BlinkLED(LED_GREEN, 1);     
-}
-
-//*******************************************************************
-void connectWIFI(int attempts, int duration){
-    for(int i=0; i<attempts; i++){
-
-      log_I("Attempt n. " + String(i+1) + " to  connect WIFI" );
-  
-      WiFi.disconnect();
-      WiFi.mode(WIFI_STA);
-      delay(100);
-      WiFi.begin(ssid, password);
-      WiFi.setTxPower( WIFI_POWER_11dBm );
-      long int startConn = millis();
-      while ( WiFi.status() != WL_CONNECTED &&   (millis() - startConn < (duration*1000) ) ) {
-        delay(1000);
-        log_I(".");
-      }
-      
-      if ( WiFi.status() == WL_CONNECTED ){
-        log_I("\nConnected to WiFi!");
-        BlinkLED(LED_GREEN, 1);
-        return;
-      }     
-    }
-}
-
-//********************************************************************
-void get_sntp_sync_status(){
-  sntp_sync_status_t syncStatus = sntp_get_sync_status();
-  switch (syncStatus) {
-    case SNTP_SYNC_STATUS_RESET:
-      log_I("SNTP_SYNC_STATUS_RESET");
-      break;
-
-    case SNTP_SYNC_STATUS_COMPLETED:
-      log_I("SNTP_SYNC_STATUS_COMPLETED");
-      break;
-
-    case SNTP_SYNC_STATUS_IN_PROGRESS:
-      log_I("SNTP_SYNC_STATUS_IN_PROGRESS");
-      break;
-
-    default:
-      log_e("Unknown Sync Status");
-      break;
-  }
-}
-
-//******************************************************************
-void get_sntp_sync_mode(){
-  sntp_sync_mode_t mode = sntp_get_sync_mode();
-  switch (mode) {
-    case SNTP_SYNC_MODE_IMMED:
-      log_I("SNTP_SYNC_MODE_IMMED");
-      break;
-
-    case SNTP_SYNC_MODE_SMOOTH:
-      log_I("SNTP_SYNC_MODE_SMOOTH");
-      break;
-
-    default:
-      log_e("Unknown Sync Mode");
-      break;
-  }
-}
-
+// ******************************************************************
+//              Setup
 // ******************************************************************
 void setup() {
   I2C_BUS.begin(SDA_PIN, SCL_PIN, 100000);
@@ -279,7 +183,7 @@ void setup() {
   pinMode(READY_PIN, INPUT);
 
   log_I("setup end. ");
-}
+}  // end setup
 
 // -----------------------------------------------------------------------------
 String getADSmeasurement(){
@@ -325,7 +229,7 @@ String getADSmeasurement(){
 
   String dataRecord = String( rtc.getTimeDate(true) ) + ";" + String(tension_A1)+";"+ String(tension_A2)+";"+ String(tension_dif) + ";" + String(energy_A1,10)+";"+ String(energy_A2,10)+";"+ String(energy_dif,10)  +";\n";     
   return dataRecord;
-}
+}  // end getADSmeasurement
 
 /******************************************************************************************
  * Main Loop
@@ -351,26 +255,63 @@ void loop() {
   }
 
   if (millis() - last_github_upload > MEASUREMENT_INTERVAL_GITHUB) {
+    bool blob_ok = true;
     log_I("Starting upload....");
     // get the SHA of the base tree for the file
     String oldFileSHA = getFileSHA();
    // PUSH the new updated file 
     String newfileSHA = uploadFileInChunks();
-    // create a new tree
-    String newTreeSHA = createTree(newfileSHA);
+
+    if (newfileSHA.length() <40 ){
+      log_I("Incorrect New File SHA Blob size (<40) \n PUSH to GitHub cannot continue.");
+      blob_ok = false;
+    }
+    
     // get parent 
-    String parentSHA = getParents();
+    String parentSHA = "";
+    if (blob_ok == true)
+      parentSHA = getParents();
+
+    if (parentSHA.length() <40 ){
+      log_I("Incorrect commit SHA Blob size (<40) \n PUSH to GitHub cannot continue.");
+      blob_ok = false;
+    }
+
+    // create a new tree
+    String newTreeSHA = "";
+    if (blob_ok == true)
+      newTreeSHA = createTree(newfileSHA, parentSHA);
+    
+    if (newTreeSHA.length() <40 ){
+      log_I("Incorrect New Tree SHA Blob size (<40) \n PUSH to GitHub cannot continue.");
+      blob_ok = false;
+    }else if (parentSHA.length() <40 ){
+      log_I("Incorrect parent SHA Blob size (<40) \n PUSH to GitHub cannot continue.");
+      blob_ok = false;
+    }
+
     // Commit the tree
-    String commitSHA = createCommit(newTreeSHA, parentSHA);
+    String commitSHA = "";
+    if (blob_ok == true)
+      commitSHA = createCommit(newTreeSHA, parentSHA);
+
+    if (newfileSHA.length() <40 ){
+      log_I("Incorrect commit SHA Blob size (<40) \n PUSH to GitHub cannot continue.");
+      blob_ok = false;
+    }
+
     // Update the reference (branch) to point to the new commit
-    updateReference(commitSHA);
+    if (blob_ok == true)
+      updateReference(commitSHA);
 
     last_github_upload = millis();
   }
-
-}
+}  // end loop 
 
 //-------------------------------------------------------------------------------
+// For a somewhat deltailed tutorial go here: 
+// https://dev.to/bro3886/create-a-folder-and-push-multiple-files-under-a-single-commit-through-github-api-23kc
+
 // Function to send a GET request to GitHub and extract the file's SHA blob
 String getFileSHA() {
   if (WiFi.status() != WL_CONNECTED) {
@@ -397,20 +338,20 @@ String getFileSHA() {
   if (httpResponseCode > 0) {
     String responseBody = http.getString();
     http.end();
-    log_I("SHA Blob request made successfully!");
-    log_I("Response: " + responseBody);
+    log_I("current File SHA Response: " + responseBody);
     String FileSHA = extractSHA(responseBody);
     if (FileSHA.length() <40 ){
-      log_I("Incorrect Blob size (<40)");
+      log_I("Incorrect File SHA Blob size (<40)");
       return "-6";
     }
+    log_I("Current File SHA Blob:" + FileSHA );
     return FileSHA;
   } else {
-    log_I("Failed to retrieve file: " + http.errorToString(httpResponseCode) );
+    log_I("Failed to retrieve File SHA, err:" + http.errorToString(httpResponseCode) );
     http.end();
     return "-3";
   }
-}
+}  // end getFileSHA
 
 // ------------------------------------------------------------------------------------------------------
 String uploadFileInChunks() {
@@ -422,6 +363,8 @@ String uploadFileInChunks() {
   }
 
   String url = "/repos/" + String(githubUser) + "/" + String(githubRepo) + "/git/blobs";
+  log_I("Requesting URL: " + url );
+
   String encodedChunk;
   String fileBlobs = "";
   
@@ -485,21 +428,19 @@ String uploadFileInChunks() {
   String responseBody = client.readString();
   client.stop();
 
-  log_I("Response Body:" + responseBody);
+  log_I("PUSH file Response:" + responseBody);
 
   String blobSHA = extractSHA(responseBody);
-  log_I("Blob SHA: " + blobSHA);
+  log_I("PUSH File SHA Blob: " + blobSHA);
   if (blobSHA.length() <40 ){
-    log_I("Incorrect Blob size (<40)");
+    log_I("Incorrect Push File Blob size (<40)");
     return "-6";
   }
   return blobSHA;
-  // Create the tree with the blob SHA
- // createTree(blobSHA);
-}
+}  // end uploadFileInChunks
 
 // ----------------------------------------------------------------------------------
-String createTree(String blobSHA) {
+String createTree(String newfileSHA, String parentSHA) {
   if (WiFi.status() != WL_CONNECTED) {
     log_I("WIFI not available. skipping upload.");
     return "-2";
@@ -507,6 +448,7 @@ String createTree(String blobSHA) {
 
   HTTPClient http;
   String url = "https://api.github.com/repos/" + String(githubUser) + "/" + String(githubRepo) + "/git/trees";
+  log_I("Requesting URL: " + url );
 
   http.begin(url);
   http.addHeader("Authorization", "Bearer " + String(githubToken));
@@ -515,9 +457,9 @@ String createTree(String blobSHA) {
 
   // Create tree payload with the blob SHA  : not the  latestTreeSHA
   String payload = "{"
-                    "\"base_tree\": \"" + latestTreeSHA + "\","
+                    "\"base_tree\": \"" + parentSHA + "\","
                     "\"tree\": ["
-                    "{ \"path\": \"" + githubFilePath + "\", \"mode\": \"100644\", \"type\": \"blob\", \"sha\": \"" + blobSHA + "\" }"
+                    "{ \"path\": \"" + githubFilePath + "\", \"mode\": \"100644\", \"type\": \"blob\", \"sha\": \"" + newfileSHA + "\" }"
                     "]"
                     "}";
 
@@ -532,14 +474,12 @@ String createTree(String blobSHA) {
 
     String newTreeSHA = extractSHA(response);
     log_I("New Tree SHA blob: " + newTreeSHA);
-    // Commit the tree
-    // createCommit(newTreeSHA);
     return newTreeSHA;
   } else {
     log_I("Error creating tree: " + http.errorToString(httpResponseCode));
     return "-3";
   }  
-}
+}  //end createTree
 
 
 // ------------------------------------------------------------------------------------------------------------------
@@ -551,6 +491,7 @@ String getParents() {
 
   HTTPClient http;
   String url = "https://api.github.com/repos/" + String(githubUser) + "/" + String(githubRepo) + "/git/refs/heads/" + String(githubBranch);
+  log_I("Requesting URL: " + url );
 
   http.begin(url);
   http.addHeader("Authorization", "Bearer " + String(githubToken));
@@ -564,7 +505,7 @@ String getParents() {
     http.end();
     log_I("Parents response: " + responseBody);
     String blobSHA = extractSHA(responseBody);
-    log_I("Blob SHA: " + blobSHA);
+    log_I("Parents SHA Blob: " + blobSHA);
     if (blobSHA.length() <40 ){
       log_I("Incorrect Blob size (<40)");
       return "-6";
@@ -575,7 +516,7 @@ String getParents() {
     log_I("Error updating reference: " + http.errorToString(httpResponseCode));
     return "-4";
   }
-}
+}  // end getParents
 
 //-------------------------------------------------------------------------------------------
 String createCommit(String newTreeSHA, String parentSHA) {
@@ -586,6 +527,7 @@ String createCommit(String newTreeSHA, String parentSHA) {
 
   HTTPClient http;
   String url = "https://api.github.com/repos/" + String(githubUser) + "/" + String(githubRepo) + "/git/commits";
+  log_I("Requesting URL: " + url );
 
   http.begin(url);
   http.addHeader("Authorization", "Bearer " + String(githubToken));
@@ -623,7 +565,7 @@ String createCommit(String newTreeSHA, String parentSHA) {
     log_I("Error creating commit: " + http.errorToString(httpResponseCode));
     return "-4";
   }  
-}
+}  // end createCommit
 
 // ------------------------------------------------------------------------------------------------------------------
 String updateReference(String newCommitSHA) {
@@ -634,6 +576,7 @@ String updateReference(String newCommitSHA) {
 
   HTTPClient http;
   String url = "https://api.github.com/repos/" + String(githubUser) + "/" + String(githubRepo) + "/git/refs/heads/" + String(githubBranch);
+  log_I("Requesting URL: " + url );
 
   http.begin(url);
   http.addHeader("Authorization", "Bearer " + String(githubToken));
@@ -658,7 +601,7 @@ String updateReference(String newCommitSHA) {
     http.end();
     return "-4";
   }
-}
+}  // end createCommit
 
 // --------------------------------------------------------------------------
 //       support functions
@@ -676,7 +619,7 @@ String extractSHA(String response) {
 
   String sha = response.substring(posStart+6, posEnd);
   return sha;
-}
+}  // end extractSHA
 
 //--------------------------------------------------------------------------------------------------------------------
 void writeDataRecord(String dataRecord){
@@ -697,7 +640,7 @@ void writeDataRecord(String dataRecord){
 
   // Close the file
   file.close();
-}
+}  // end writeDataRecord
 
 //--------------------------------------------
 bool createNewDatasetFile(String file_Path){
@@ -727,7 +670,7 @@ bool createNewDatasetFile(String file_Path){
       return false;   
     }
   }
-}
+}  // end createNewDatasetFile
 
 // -----------------------------------------------------------------------------------------------------
 String encodeBase64(uint8_t buffer[], size_t bytesRead){
@@ -759,11 +702,107 @@ String encodeBase64(uint8_t buffer[], size_t bytesRead){
   }
 
 return String( (char*)encodedContent);
-}
+}  // end encodeBase64
 
 // --------------------------------------------------------------------------------------------------------------------------
  unsigned long encode_base64_length(unsigned long input_length) {
     unsigned long base = input_length * 4 / 3;  // Adjust size for Base64 encoding
     int mod = base % 4;
     return (base + mod); 
- }
+ }  // end encode_base64_length
+
+// *******************************************************************
+// *******************************************************************
+void BlinkLED(int LED, int duration) {
+  digitalWrite(LED, HIGH);   // sets the digital pin 13 on
+  delay(duration * 1000);    // waits for a second
+  digitalWrite(LED, LOW);   // sets the digital pin 13 off 
+}  // end BlinkLED
+
+//*******************************************************************
+void get_time(){
+  tm timeinfo;
+  log_I("Connecting to the Time Server....");
+  // Init and get the time
+  sntp_set_sync_mode(SNTP_SYNC_MODE_SMOOTH);
+  configTime( 3600*timezone, daysavetime*3600, ntpServer_1, ntpServer_2, ntpServer_3 );
+  timeval tv;
+  sntp_sync_time(&tv);
+  log_I("Waiting for Time Sync");
+  
+  if (getLocalTime(&timeinfo) )
+    rtc.setTimeStruct(timeinfo);
+  
+  get_sntp_sync_status();
+  get_sntp_sync_mode();
+
+  NTP_update_interval = sntp_get_sync_interval(); // in milisec 
+  log_I("NTP Sync Interval = " + String(NTP_update_interval) );
+
+  BlinkLED(LED_GREEN, 1);     
+}  // end get_time
+
+//*******************************************************************
+void connectWIFI(int attempts, int duration){
+    for(int i=0; i<attempts; i++){
+
+      log_I("Attempt n. " + String(i+1) + " to  connect WIFI" );
+  
+      WiFi.disconnect();
+      WiFi.mode(WIFI_STA);
+      delay(100);
+      WiFi.begin(ssid, password);
+      WiFi.setTxPower( WIFI_POWER_11dBm );
+      long int startConn = millis();
+      while ( WiFi.status() != WL_CONNECTED &&   (millis() - startConn < (duration*1000) ) ) {
+        delay(1000);
+        log_I(".");
+      }
+      
+      if ( WiFi.status() == WL_CONNECTED ){
+        log_I("\nConnected to WiFi!");
+        BlinkLED(LED_GREEN, 1);
+        return;
+      }     
+    }
+}  // end connectWIFI
+
+//********************************************************************
+void get_sntp_sync_status(){
+  sntp_sync_status_t syncStatus = sntp_get_sync_status();
+  switch (syncStatus) {
+    case SNTP_SYNC_STATUS_RESET:
+      log_I("SNTP_SYNC_STATUS_RESET");
+      break;
+
+    case SNTP_SYNC_STATUS_COMPLETED:
+      log_I("SNTP_SYNC_STATUS_COMPLETED");
+      break;
+
+    case SNTP_SYNC_STATUS_IN_PROGRESS:
+      log_I("SNTP_SYNC_STATUS_IN_PROGRESS");
+      break;
+
+    default:
+      log_e("Unknown Sync Status");
+      break;
+  }
+}  // end get_sntp_sync_status
+
+//******************************************************************
+void get_sntp_sync_mode(){
+  sntp_sync_mode_t mode = sntp_get_sync_mode();
+  switch (mode) {
+    case SNTP_SYNC_MODE_IMMED:
+      log_I("SNTP_SYNC_MODE_IMMED");
+      break;
+
+    case SNTP_SYNC_MODE_SMOOTH:
+      log_I("SNTP_SYNC_MODE_SMOOTH");
+      break;
+
+    default:
+      log_e("Unknown Sync Mode");
+      break;
+  }
+}  // end get_sntp_sync_mode
