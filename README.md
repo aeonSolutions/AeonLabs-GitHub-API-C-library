@@ -25,7 +25,7 @@ Goto <a href="https://github.com/aeonSolutions/Open-Scientific-Research">Open Sc
 </p>
 
 **I start working again on this project beginning next year 2025**. In the meantime looking for sponsors to pay for the required work necessary for the successful completion of this project.  <br>
-I have also available here, on Github, a C++ library for the [Dataverse] API (data repositories). To view click [here](https://github.com/aeonSolutions/OpenScience-Dataverse-API-C-library). <br>
+I have also available here, on Github, a C++ library for the [Dataverse API](https://github.com/aeonSolutions/OpenScience-Dataverse-API-C-library) (data repositories). To view click [here](https://github.com/aeonSolutions/OpenScience-Dataverse-API-C-library). <br>
 
 
 This is a C++-based library intended for embedded firmware development, however, it can be easily ported and made compatible with any platform or operating system. see the [WIKI](h) for more information.
