@@ -14,7 +14,7 @@ Goto <a href="https://github.com/aeonSolutions/Open-Scientific-Research">Open Sc
   <a href="https://github-com.translate.goog/aeonSolutions/AeonLabs-GitHub-API-C-library?_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp">Change Language</a> <br>
 </div>
 
-# [![CodeFactor](https://www.codefactor.io/repository/github/aeonsolutions/openscience-dataverse-api-c-library/badge)](https://www.codefactor.io/repository/github/aeonsolutions/openscience-dataverse-api-c-library) GitHub API C++ library
+#  [![CodeFactor](https://www.codefactor.io/repository/github/aeonsolutions/aeonlabs-github-api-c-library/badge)](https://www.codefactor.io/repository/github/aeonsolutions/aeonlabs-github-api-c-library) GitHub API C++ library
  **current project Total: > 50 work.h** <br>
 **current version:** 0.5 
 
