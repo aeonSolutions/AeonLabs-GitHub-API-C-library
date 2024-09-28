@@ -8,7 +8,7 @@
 **Navigation** | [AeonLabs Main Index](https://github.com/aeonSolutions/aeonSolutions/blob/main/aeonSolutions-Main-Index.md)   >>  [Main Page - Open Source Code Software](https://github.com/aeonSolutions/aeonlabs-open-software-catalogue)  >>  GitHub API C library
 
 <div align="right">
-Goto <a href="https://github.com/aeonSolutions/Open-Scientific-Research">Open Science Research</a> &nbsp; Last update 24-09-2024 <br>
+Goto <a href="https://github.com/aeonSolutions/Open-Scientific-Research">Open Science Research</a> &nbsp; Last update 28-09-2024 <br>
   <a href="https://github-com.translate.goog/aeonSolutions/AeonLabs-GitHub-API-C-library?_x_tr_sl=fr&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=wapp">Change Language</a> <br>
 </div>
 
